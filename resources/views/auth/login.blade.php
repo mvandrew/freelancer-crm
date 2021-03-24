@@ -1,56 +1,40 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('login') }}">
+<x-guest-layout title="Вход" class="text-center form-signin">
+    <x-form-signin>
+        <form action="{{ route('login') }}" method="post" class="form-signin__form">
             @csrf
+            <h1 class="form-signin__title">Вход</h1>
 
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+            <div class="form-floating form-signin__row">
+                <x-form-signin-input type="email"
+                                     id="email"
+                                     name="email"
+                                     :value="old('email')" required autofocus
+                                     placeholder="your@e.mail" />
+                <x-form-signin-label for="email" :value="'E-Mail'" />
             </div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
+            <div class="form-floating form-signin__row">
+                <x-form-signin-input type="password"
+                                     id="password"
+                                     name="password"
+                                     :value="old('email')" required autocomplete="current-password"
+                                     placeholder="Пароль" />
+                <x-form-signin-label for="password" :value="'Пароль'" />
             </div>
 
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+            <div class="checkbox mb-3 form-signin__checkbox">
+                <label>
+                    <input type="checkbox" value="1" name="remember" id="remember"> Запомнить меня
                 </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
+            <button class="w-100 btn btn-lg btn-primary form-signin__button form-signin__button_submit"
+                    type="submit">Войти</button>
 
-                <x-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
+            <ul class="form-signin__action-links">
+                <li class="form-signin__action-item"><a href="{{ route('register') }}" class="form-signin__action-link">Регистрация</a></li>
+                <li class="form-signin__action-item"><a href="{{ route('password.request') }}" class="form-signin__action-link">Забыли пароль?</a></li>
+            </ul>
         </form>
-    </x-auth-card>
+    </x-form-signin>
 </x-guest-layout>

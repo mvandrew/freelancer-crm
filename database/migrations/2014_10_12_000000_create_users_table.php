@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
                 ->index()
                 ->comment('Полное имя пользователя');
 
-            $table->string('email', 254)
+            $table->string('email', 255)
                 ->unique()
                 ->comment('E-Mail пользователя');
 
@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
                 ->default(false)
                 ->comment('Признак активности учетной записи');
 
-            $table->string('password', 150)
+            $table->string('password', 255)
                 ->comment('Hash пароля пользователя');
 
             $table->rememberToken();
