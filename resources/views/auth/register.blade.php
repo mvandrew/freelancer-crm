@@ -1,59 +1,54 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('register') }}">
+<x-guest-layout title="Регистрация" class="text-center form-signin">
+    <x-form-signin>
+        <form action="{{ route('register') }}" method="post" class="form-signin__form">
             @csrf
+            <h1 class="form-signin__title">Регистрация</h1>
 
-            <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Name')" />
-
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+            <div class="form-floating form-signin__row">
+                <x-form-signin-input type="text"
+                                     id="name"
+                                     name="name"
+                                     :value="old('name')" required autofocus
+                                     suffix="first"
+                                     placeholder="Ваше имя" />
+                <x-form-signin-label for="name" :value="'Имя'" />
             </div>
 
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+            <div class="form-floating form-signin__row">
+                <x-form-signin-input type="email"
+                                     id="email"
+                                     name="email"
+                                     :value="old('email')" required
+                                     placeholder="your@e.mail" />
+                <x-form-signin-label for="email" :value="'E-Mail'" />
             </div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
+            <div class="form-floating form-signin__row">
+                <x-form-signin-input type="password"
+                                     id="password"
+                                     name="password"
+                                     :value="old('password')" required autocomplete="current-password"
+                                     placeholder="Пароль" />
+                <x-form-signin-label for="password" :value="'Пароль'" />
             </div>
 
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
+            <div class="form-floating form-signin__row">
+                <x-form-signin-input type="password"
+                                     id="confirm"
+                                     name="confirm"
+                                     :value="old('confirm')" required autocomplete="current-password"
+                                     suffix="last"
+                                     placeholder="Подтверждение пароля" />
+                <x-form-signin-label for="confirm" :value="'Подтверждение пароля'" />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
+            <button class="w-100 btn btn-lg btn-primary form-signin__button form-signin__button_submit"
+                    type="submit">Регистрация</button>
 
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
-            </div>
+            <ul class="form-signin__action-links">
+                <li class="form-signin__action-item"><a href="{{ route('login') }}" class="form-signin__action-link">Уже зарегистрированы?</a></li>
+                <li class="form-signin__action-item"><a href="{{ route('password.request') }}" class="form-signin__action-link">Забыли пароль?</a></li>
+            </ul>
         </form>
-    </x-auth-card>
+    </x-form-signin>
 </x-guest-layout>

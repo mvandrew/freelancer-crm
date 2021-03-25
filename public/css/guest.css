@@ -14,12 +14,16 @@
 .form-signin__row:focus-within {
   z-index: 2;
 }
-.form-signin__input[type=email] {
+.form-signin__input_first {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-.form-signin__input[type=password] {
+.form-signin__input_in {
+  margin-bottom: -1px;
+  border-radius: 0;
+}
+.form-signin__input_last {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;

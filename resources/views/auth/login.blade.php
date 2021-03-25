@@ -9,6 +9,7 @@
                                      id="email"
                                      name="email"
                                      :value="old('email')" required autofocus
+                                     suffix="first"
                                      placeholder="your@e.mail" />
                 <x-form-signin-label for="email" :value="'E-Mail'" />
             </div>
@@ -17,7 +18,8 @@
                 <x-form-signin-input type="password"
                                      id="password"
                                      name="password"
-                                     :value="old('email')" required autocomplete="current-password"
+                                     :value="old('password')" required autocomplete="current-password"
+                                     suffix="last"
                                      placeholder="Пароль" />
                 <x-form-signin-label for="password" :value="'Пароль'" />
             </div>
